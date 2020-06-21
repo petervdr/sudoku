@@ -1,30 +1,19 @@
-puts "GENERATING SUDOKU TABLE"
-puts "-------------"
-std_seq = [1,2,3,4,5,6,7,8,9]
-board = Array.new
-i=1
+require_relative 'sudoku_methods'
 
-while i <= 9
-	
-	seq_to_div = std_seq
-	board[i] = Array.new
+puts "\n\n *** GENERATING A VALID SUDOKU BOARD *** "
 
-	print "|"
 
-	if i == 1
-		seq_to_div.shuffle!
-		seq_to_div.collect!.with_index do |x,y| 
-			(y==3 || y==6) ? print("|#{x}") : print(x) 
-			board[i][y]=x
-		end	
-	end
+# CREATE THE board
+create_board
 
-	if i == 2 
-	 	[0..8].seq
-	end
+# CALCULATE OPTIONS FOR ALL OTHER FIELDS
+calculate_options_for_empty_fields
 
-	puts "|"
-	i += 1
-end
+populate_board
 
-puts "-------------"
+print_board
+
+
+
+
+
